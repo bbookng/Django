@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>로또 당첨 횟수를 알아보자.</h1>
+    <hr>
+    <h2>이번 회차 당첨 번호 : {{ answer }} + {{ bonus }}</h2>
+    <ul>
+        {% for i in data %}
+        {% if forloop.counter == 6 %}
+        <li>꽝 : {{ i }}번</li>
+        {% else %}
+        <li> {{ forloop.counter }}등 : {{ i }} 번</li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</body>
+</html>
