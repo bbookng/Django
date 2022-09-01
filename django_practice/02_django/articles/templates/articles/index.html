@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 style="background-color:lightgrey">Articles</h1>
+  <a class="btn btn-outline-danger" style='text-decoration:none; font-size:2rem' href="{% url 'articles:new' %}">NEW</a>
+  <hr>
+  {% for article in articles %}
+    <p style="background-color:pink; font-weight:bold">글 번호 : {{ article.pk }}</p>
+    <p>제목 : {{ article.title }}</p>
+    <p>내용 : {{ article.content }}</p>
+    <a class="btn btn-outline-success" style='text-decoration:none' href="{% url 'articles:detail' article.pk %} ">detail</a>
+    <hr>
+  {% empty %}
+  <p>비어있어요</p>
+  {% endfor %}
+{% endblock content %}
