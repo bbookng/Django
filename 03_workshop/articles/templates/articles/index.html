@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Articles</h1>
+  <a style="text-decoration:none" href="{% url 'articles:new' %}">NEW</a>
+  <hr>
+  {% for article in articles %}
+    <p>글 번호 : {{ article.pk }}</p>
+    <p>제목 : {{ article.title }}</p>
+    <p>내용 : {{ article.content }}</p>
+    <a style='text-decoration:none' href="{% url 'articles:detail' article.pk %} ">DETAIL</a>
+    <hr>
+  {% empty %}
+  <p>비어있어요</p>
+  {% endfor %}
+{% endblock content %}
