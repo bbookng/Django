@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="fw-semibold">NEW</h1>
+  <hr>
+  <form action="{% url 'movies:create' %}" method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="title">TITLE</label>
+        <input class="form-control" type="text" id="title" name="title">
+    </div>
+    <div class="mb-3">
+        <label for="audience">AUDIENCE</label>
+        <input class="form-control" type="text" id="audience" name="audience">
+    </div>
+    <div class="mb-3">
+        <label for="release_date">RELEASE_DATE</label>
+        <input class="form-control" type="date" name="release_date">
+    </div>
+    <div class="mb-3">
+        <label for="genre">GENRE</label>
+        <select class="form-control" name="genre" id="{{ movie.genre }}">
+            <option value="선택">--선택--</option>
+            <option value="액션">액션</option>
+            <option value="범죄">범죄</option>
+            <option value="코미디">코미디</option>
+            <option value="로맨스">로맨스</option>
+            <option value="스릴러">스릴러</option>
+            <option value="공포">공포</option>
+            <option value="멜로">멜로</option>
+            <option value="뮤지컬">뮤지컬</option>
+            <option value="음악">음악</option>
+            <option value="기타">기타</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="score">SCORE</label>
+        <input class="form-control" type="text" name="score" name="score">
+    </div>
+    <div class="mb-3">
+        <label for="poster_url">POSTER_URL</label>
+        <input class="form-control" type="text" id="poster_url" name="poster_url">
+    </div>
+    <div class="mb-3">
+        <label for="description">DESCRIPTION</label>
+        <textarea class="form-control" name="description" id="description" cols="30" rows="5"></textarea>
+    </div>
+    <input class="btn btn-dark mt-2 btn-sm" type="submit" value="submit">
+  </form>
+  <hr>
+  <a class="btn btn-outline-primary btn-sm" href="{% url 'movies:index' %}">BACK</a>
+
+{% endblock content %}

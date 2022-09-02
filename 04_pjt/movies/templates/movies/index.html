@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="text-center">
+    <h1 class="font-monospace fw-bold fs-1" style="color:#d63384">Movie World</h1>
+    <div style="width:100%; display:flex; justify-content:row-reverse">
+      <a class="btn btn-outline-secondary btn-sm" href="{% url 'movies:new' %}">+</a>
+    </div>   
+    <hr>
+    <div class="container row">
+      {% for movie in movie %}
+      <div class="col-4">
+        <img class="m-2" width="100%" src="{{ movie.poster_url }}"><br>
+        <a class="fw-semibold fs-5 text-decoration-none text-black" href="{% url 'movies:detail' movie.pk %}">{{ movie.title }}</a>
+        <p>💕{{ movie.score }}</p>
+        <hr>
+      </div>
+      {% endfor %} 
+    </div> 
+  </div>
+{% endblock content %}

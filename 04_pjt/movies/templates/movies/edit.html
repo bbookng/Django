@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="fw-semibold">EDIT</h1>
+  <hr>
+  <form action="{% url 'movies:update' movie.pk %}" method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="title">TITLE</label>
+        <input class="form-control" type="text" id="title" name="title" value="{{ movie.title }}">
+    </div>
+    <div class="mb-3">
+        <label for="audience">AUDIENCE</label>
+        <input class="form-control" type="text" id="audience" name="audience" value="{{ movie.audience }}">
+    </div>
+    <div class="mb-3">
+        <label for="release_date">RELEASE_DATE</label>
+        <input class="form-control" type="date" name="release_date" value="{{ movie.release_date|date:'Y-m-d' }}">
+    </div>
+    <div class="mb-3">
+        <label for="genre">GENRE</label>
+        <select class="form-control" name="genre" id="genre" value="{{ movie.genre }}">
+            <option value="선택">--선택--</option>
+            <option value="액션" {% if movie.genre == "액션" %} selected {% endif%} >액션</option>
+            <option value="범죄" {% if movie.genre == "범죄" %} selected {% endif%} >범죄</option>
+            <option value="코미디" {% if movie.genre == "코미디" %} selected {% endif%} >코미디</option>
+            <option value="로맨스" {% if movie.genre == "로맨스" %} selected {% endif%} >로맨스</option>
+            <option value="스릴러" {% if movie.genre == "스릴러" %} selected {% endif%} >스릴러</option>
+            <option value="공포" {% if movie.genre == "공포" %} selected {% endif%} >공포</option>
+            <option value="멜로" {% if movie.genre == "멜로" %} selected {% endif%} >멜로</option>
+            <option value="뮤지컬" {% if movie.genre == "뮤지컬" %} selected {% endif%} >뮤지컬</option>
+            <option value="음악" {% if movie.genre == "음악" %} selected {% endif%} >음악</option>
+            <option value="기타" {% if movie.genre == "기타" %} selected {% endif%} >기타</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="score">SCORE</label>
+        <input class="form-control" type="text" name="score" name="score" value="{{ movie.score }}">
+    </div>
+    <div class="mb-3">
+        <label for="poster_url">POSTER_URL</label>
+        <input class="form-control" type="text" id="poster_url" name="poster_url" value="{{ movie.poster_url }}">
+    </div>
+    <div class="mb-3">
+        <label for="description">DESCRIPTION</label>
+        <textarea class="form-control" name="description" id="description" cols="30" rows="5">{{ movie.description }}</textarea>
+    </div>
+    <input class="btn btn-outline-success" type="reset" value="Reset">
+    <input class="btn btn-outline-danger" type="submit" value="Submit">
+  </form>
+  <hr>
+  <a class="btn btn-outline-primary btn-sm"  href="{% url 'movies:index' %}">BACK</a>
+{% endblock content %}
