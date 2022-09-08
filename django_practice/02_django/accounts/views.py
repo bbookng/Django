@@ -3,7 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from .forms import CustomUserChangeForm, CustomUserCreationForm
-from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import update_session_auth_hash, get_user_model
 
 # Create your views here.
 
@@ -26,12 +26,12 @@ def logout(request):
 
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('accounts:index')
+            return redirect('articles:index')
     else:
-        form = CustomCreationForm()
+        form = CustomUserCreationForm()
     context = {
         'form': form,
     }
@@ -44,7 +44,7 @@ def delete(request):
 
 def update(request):
     if request.method == 'POST':
-        form = CustomUserChangeFom(request.POST, instance=request.user)
+        form = CustomUserChangeForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
             return redirect('articles:index')
@@ -69,3 +69,12 @@ def change_password(request):
     }
     return render(request, 'accounts/change_password.html', context)
 
+def index(request):
+    User = get_user_model()
+    members=User.objects.all()
+    
+    context = {
+        'members': members,
+    }
+    
+    return render(request, 'accounts/index.html', context)
