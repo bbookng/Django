@@ -2,7 +2,7 @@
 
 {% block content %}
   <h1 style="background-color:lightgrey">Articles</h1>
-  <a class="btn btn-outline-danger" style='text-decoration:none; font-size:2rem' href="{% url 'articles:new' %}">NEW</a>
+  <a class="btn btn-outline-danger" style='text-decoration:none; font-size:2rem' href="{% url 'articles:create' %}">CREATE</a>
   <hr>
   {% for article in articles %}
     <p style="background-color:pink; font-weight:bold">글 번호 : {{ article.pk }}</p>
