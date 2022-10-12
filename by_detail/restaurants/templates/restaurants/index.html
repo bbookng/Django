@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <img src="{% static 'restaurants/img.jpg' %}" alt="img" style="width:300px;">
+    <img src="{% static '러브장.png' %}" alt="sample img" style="width:300px;">
+    <h1> 부울경 2반 맛집 </h1>
+    {% if  restaurants %}
+    <ul>
+        {% for restaurant  in restaurants  %}
+            <li> <a href="{% url 'restaurants:detail' restaurant.pk %} ">{{ restaurant.name }}</a> </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <a href="{% url 'restaurants:create' %}">맛집 추천하기</a>
+{% endblock content %}

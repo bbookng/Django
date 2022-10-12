@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1> 부울경 2반 맛집 </h1>
+    {% if  restaurants %}
+    <ul>
+        {% for restaurant  in restaurants  %}
+            <li> <a href="{% url 'restaurants:detail' restaurant.pk %} ">{{ restaurant.name }}</a> </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endblock content %}

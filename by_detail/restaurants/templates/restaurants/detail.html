@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1> 부울경 2반 맛집 </h1>
+{% if detail %}
+    <img src="{{detail.image.url}}" alt="img">
+    <h2> [{{detail.name}}] </h2>
+    <ul>
+        <li> 주소 : {{detail.region}} </li>
+        <li> 별점 : {{detail.stars}} </li>
+        <li> 대표메뉴 : {{detail.bestMenu}} </li>
+        <li> 추천이유 : {{detail.reason}} </li>
+    </ul>
+{% else %}
+    "맛집 상세 정보가 없습니다."
+{% endif %}  
+<a href=" {% url 'restaurants:index' %} ">처음으로</a>
+{% endblock content %}
+
+
