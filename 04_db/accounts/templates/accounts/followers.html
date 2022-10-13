@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>{{ person.username }} 님의 팔로워 목록 </h2>
+  {% if person.followers.all %}
+   <p>{{ person.followers.all|length }} 명이 {{ person.username }} 님을 팔로우하고 있습니다.</p>
+   {% for follower in person.followers.all %}
+    <li><a href="{% url 'accounts:profile' follower.username %}">{{ follower }}</a></li>
+   {% endfor %}
+  {% else %}
+   <p>팔로워이 없습니다.</p>
+  {% endif %}
+
+{% endblock content %}
+
+

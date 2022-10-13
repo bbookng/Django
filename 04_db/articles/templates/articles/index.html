@@ -14,12 +14,17 @@
     <p>제목 : {{ article.title }}</p>
     <p>내용 : {{ article.content }}</p>
     <div>
+      💕 : {{ article.like_users.all|length }} 
+    </div>
+    <div>
       <form action="{% url 'articles:likes' article.pk %}" method="POST">
         {% csrf_token %}
         {% if request.user in article.like_users.all %}
-          <input type="submit" value="좋아요 취소">
+        <i class="fa-solid fa-heart" style="color:red"></i>
+          <input type="submit" value="좋아요취소">
         {% else %}
-          <input type="submit" value="좋아요">
+        <i class="fa-solid fa-heart"></i>
+          <input type="submit" value="좋아요">          
         {% endif %}
       </form>
     </div>

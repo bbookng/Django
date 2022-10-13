@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>{{ person.username }} 님의 팔로잉 목록 </h2>
+  {% if person.followings.all %}
+   <p>{{ person.followings.all|length }} 명을 팔로잉하고 있습니다.</p>
+   {% for following in person.followings.all %}
+   <li><a href="{% url 'accounts:profile' following.username %}">{{ following }}</a></li>
+   {% endfor %}
+  {% else %}
+   <p>팔로잉이 없습니다.</p>
+  {% endif %}
+
+{% endblock content %}
+
+
