@@ -120,3 +120,20 @@ def follow(request, user_pk):
                 person.followers.add(request.user)
         return redirect('accounts:profile', person.username)
     return redirect('accounts:login')
+
+
+def followings(request, username):
+    User = get_user_model()
+    person = User.objects.get(username=username)
+    context = {
+        'person' : person,
+    }
+    return render(request, 'accounts/followings.html', context)
+
+def followers(request, username):
+    User = get_user_model()
+    person = User.objects.get(username=username)
+    context = {
+        'person' : person,
+    }
+    return render(request, 'accounts/followers.html', context)

@@ -4,7 +4,8 @@
   <h1>{{ person.username }}님의 프로필</h1>
   <div>
     <div>
-        팔로잉 : {{ person.followings.all|length }} / 팔로워 : {{ person.followers.all|length }}
+      <a href="{% url 'accounts:followings' person.username %}">팔로잉</a> : {{ person.followings.all|length }}
+      <a href="{% url 'accounts:followers' person.username %}">팔로워</a> : {{ person.followers.all|length }}
     </div>
     {% if request.user != person %}
       <div>
